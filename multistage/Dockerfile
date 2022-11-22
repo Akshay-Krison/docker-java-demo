@@ -6,7 +6,9 @@ RUN git clone -b vp-docker https://github.com/devopshydclub/vprofile-project.git
 
 RUN cd vprofile-repo && mvn install
 
-FROM rm -rf /usr/local/tomcat/webapps/*
+FROM tomcat:8-jre11
+ 
+RUN rm -rf /usr/local/tomcat/webapps/*
 
 COPY --from=BUILD_IMAGE vprofile-repo/target/vprofile-v2.war /usr/local/tomcat/webapps/ROOT.war
 
